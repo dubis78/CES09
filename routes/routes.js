@@ -3,7 +3,7 @@ const router = express.Router();
 
 const mysqlConnection  = require('../db/db');
 
-router.get('/estudiantes', (req, res) => {
+router.get('/actoress', (req, res) => {
      
   mysqlConnection.query('SELECT * FROM actores ', (err, rows, fields) => {
       if (!err) {
@@ -14,7 +14,7 @@ router.get('/estudiantes', (req, res) => {
     });
   });
 
-router.post('/nuevo-estudiante',(req,res)=>{
+router.post('/nuevo-actor',(req,res)=>{
 
 const {nombres,apellidos,correo,documento,telefono_celular,fecha_nacimiento,institucion_id} = req.body;
 let alumno = [nombres,apellidos,correo,documento,telefono_celular,fecha_nacimiento,institucion_id];
@@ -29,7 +29,7 @@ mysqlConnection.query(nuevoAlumno, alumno, (err, results, fields) => {
   });
 });  
 
-router.put('/estudiante/:id', (req, res) => {
+router.put('/actor/:id', (req, res) => {
   const {nombres,apellidos,correo,documento,telefono_celular,
     fecha_nacimiento,institucion_id} = req.body;
   const { id } = req.params;
@@ -46,7 +46,7 @@ router.put('/estudiante/:id', (req, res) => {
   });
 });
 
-router.delete('/estudiante/:id', (req, res) => {
+router.delete('/actor/:id', (req, res) => {
   const { id } = req.params;
   mysqlConnection.query('DELETE FROM actores WHERE id = ?',
    [id], (err, rows, fields) => {
